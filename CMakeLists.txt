@@ -13,7 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-	message_generation
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -63,8 +63,12 @@ add_service_files(
   FILES
   SpeechRecog.srv
   TTS.srv
-	ActionPlan.srv
-	WhatDidYouSay.srv
+  ActionPlan.srv
+  WhatDidYouSay.srv
+  GgiLearning.srv
+  ListenCommand.srv
+  TTS.srv
+  YesNo.srv
 )
 
 ## Generate actions in the 'action' folder

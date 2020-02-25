@@ -7,9 +7,8 @@ from gcp_texttospeech.srv import TTS
 import stt
 
 import rospy
-from std_msgs.msg import String
-from ggi.srv import YesNo
-from ggi.srv import YesNoResponse
+from voice_common_pkg.srv import YesNo
+from　voice_common_pkg.srv import YesNoResponse
 
 answer_list=['yes','no']
 

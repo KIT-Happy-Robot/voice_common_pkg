@@ -6,8 +6,8 @@ import stt
 
 import Levenshtein as lev
 import rospy
-from ggi.srv import ListenCommand
-from ggi.srv import ListenCommandResponse
+from voice_common_pkg.srv import ListenCommand
+from voice_common_pkg.srv import ListenCommandResponse
 #filename and path
 file='/home/athome/catkin_ws/src/voice_common_pkg/config/'
 
