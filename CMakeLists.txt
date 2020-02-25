@@ -67,7 +67,6 @@ add_service_files(
   WhatDidYouSay.srv
   GgiLearning.srv
   ListenCommand.srv
-  TTS.srv
   YesNo.srv
 )
 
