@@ -1,3 +1,5 @@
 bool short_str
-uint8[] context_phrases
-foa
+string[] context_phrases
+float32 boost_value
+---
+string result_str

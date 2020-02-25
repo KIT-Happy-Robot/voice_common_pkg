@@ -66,6 +66,7 @@ add_service_files(
   ActionPlan.srv
   WhatDidYouSay.srv
   GgiLearning.srv
+  SpeechToText.srv
   ListenCommand.srv
   YesNo.srv
 )
