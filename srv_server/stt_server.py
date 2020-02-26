@@ -87,7 +87,7 @@ class MicrophoneStream(object):
 class speech_server():
     def __init__(self):
         print('server is ready')
-        self.server=rospy.Service('/test_phase',SpeechToText,self.google_speech_api)
+        self.server=rospy.Service('/stt_server',SpeechToText,self.google_speech_api)
 
     def listen_print_loop(self,responses):
         num_chars_printed = 0
