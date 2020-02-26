@@ -8,7 +8,7 @@ from voice_common_pkg.srv import SpeechToText
 
 import rospy
 from voice_common_pkg.srv import YesNo
-from　voice_common_pkg.srv import YesNoResponse
+from voice_common_pkg.srv import YesNoResponse
 
 answer_list=['yes','no']
 

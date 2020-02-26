@@ -174,7 +174,7 @@ class speech_server():
                         for content in audio_generator)
 
             responses = client.streaming_recognize(streaming_config, requests)
-            return SpeechToTextResponse(result_str=listen_print_loop(responses))
+            return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
 
 
 if __name__=='__main__':
