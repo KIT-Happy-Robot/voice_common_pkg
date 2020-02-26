@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 from gcp_texttospeech.srv import TTS
 #from std_srvs.srv import Empty
-import stt
-
+from voice_common_pkg.srv import SpeechToText
 import Levenshtein as lev
 import rospy
 from voice_common_pkg.srv import ListenCommand
