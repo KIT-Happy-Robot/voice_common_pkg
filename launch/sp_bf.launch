@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find gcp_speech_recognition)/launch/srvserver.launch" />
+  <include file="$(find gcp_texttospeech)/launch/srvserver.launch" />
+  <node pkg="basic_fanc" name="bf_conversation_srvserver" type="bf_conversation_srvserver.py" output="screen" />
+</launch>
