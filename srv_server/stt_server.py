@@ -10,9 +10,9 @@ import rospy
 from voice_common_pkg.srv import SpeechToText
 from voice_common_pkg.srv import SpeechToTextResponse
 #import actionlib
-from google.cloud import speech
-from google.cloud.speech import enums
-from google.cloud.speech import types
+from google.cloud import speech_v1p1beta1 as speech
+#from google.cloud.speech import enums 消えたらしい
+#from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
 
@@ -135,16 +135,16 @@ class speech_server():
         language_code = 'en-US'
         if req.short_str:
             speech_contexts_element = {"phrases": req.context_phrases,"boost":req.boost_value}
-
+            #print(speech_contexts_element)
             client = speech.SpeechClient()
 
-            metadatas = types.RecognitionMetadata()
+            metadatas = speech.RecognitionMetadata()
             metadatas.microphone_distance = (
-                        enums.RecognitionMetadata.MicrophoneDistance.NEARFIELD)#NEARFIELD  MIDFIELDはマイクがスピーカから３メートル以内
+                        speech.RecognitionMetadata.MicrophoneDistance.NEARFIELD)#NEARFIELD  MIDFIELDはマイクがスピーカから３メートル以内
             metadatas.interaction_type = (
-                        enums.RecognitionMetadata.InteractionType.VOICE_COMMAND)
-            config = types.RecognitionConfig(
-                encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+                        speech.RecognitionMetadata.InteractionType.VOICE_COMMAND)
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
                 sample_rate_hertz=RATE,
                 language_code=language_code,
                 speech_contexts=[speech_contexts_element],
@@ -153,16 +153,16 @@ class speech_server():
         else:
             client = speech.SpeechClient()
 
-            metadatas = types.RecognitionMetadata()
+            metadatas = speech.RecognitionMetadata()
             metadatas.microphone_distance = (
-                        enums.RecognitionMetadata.MicrophoneDistance.NEARFIELD)#NEARFIELD  MIDFIELDはマイクがスピーカから３メートル以内
-            config = types.RecognitionConfig(
-                encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+                        speech.RecognitionMetadata.MicrophoneDistance.NEARFIELD)#NEARFIELD  MIDFIELDはマイクがスピーカから３メートル以内
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
                 sample_rate_hertz=RATE,
                 language_code=language_code,
                 metadata=metadatas)
 
-        streaming_config = types.StreamingRecognitionConfig(
+        streaming_config = speech.StreamingRecognitionConfig(
             config=config,
             interim_results=True)
 
@@ -170,7 +170,7 @@ class speech_server():
 
         with MicrophoneStream(RATE, CHUNK) as stream:
             audio_generator = stream.generator()
-            requests = (types.StreamingRecognizeRequest(audio_content=content)
+            requests = (speech.StreamingRecognizeRequest(audio_content=content)
                         for content in audio_generator)
 
             responses = client.streaming_recognize(streaming_config, requests)
@@ -178,6 +178,6 @@ class speech_server():
 
 
 if __name__=='__main__':
-    rospy.init_node('test_phase')
+    rospy.init_node('stt_server')
     f=speech_server()
     rospy.spin()

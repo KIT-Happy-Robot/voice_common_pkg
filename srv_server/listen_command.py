@@ -9,8 +9,9 @@ import rospy
 from voice_common_pkg.srv import ListenCommand
 from voice_common_pkg.srv import ListenCommandResponse
 #filename and path
-file='/home/athome/catkin_ws/src/voice_common_pkg/config/'
+import os.path
 
+file_path=os.path.expanduser('~/catkin_ws/src/voice_common_pkg/config')
 
 
 
@@ -27,7 +28,7 @@ class GgiinStruction:
 
 
     def main(self,req):
-        with open(file+req.file_name,'r') as f:
+        with open(file_path+req.file_name,'r') as f:
             speak_list=[line.strip() for line in f.readlines()]
         self.tts("ready")
         string=self.stt(short_str=True,context_phrases=speak_list,boost_value=20.0)
