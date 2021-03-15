@@ -134,7 +134,7 @@ class speech_server():
     def google_speech_api(self,req):
         language_code = 'en-US'
         if req.short_str:
-            speech_contexts_element = {"phrases": req.context_phrases,"boost":req.boost_value}
+            speech_contexts_element = speech.SpeechContext(phrases=req.context_phrases)
             #print(speech_contexts_element)
             client = speech.SpeechClient()
 
