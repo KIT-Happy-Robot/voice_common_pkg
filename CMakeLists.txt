@@ -69,6 +69,7 @@ add_service_files(
   SpeechToText.srv
   ListenCommand.srv
   YesNo.srv
+  SprInformation.srv
 )
 
 ## Generate actions in the 'action' folder

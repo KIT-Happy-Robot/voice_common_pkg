@@ -10,7 +10,7 @@ import rospy
 from voice_common_pkg.srv import SpeechToText
 from voice_common_pkg.srv import SpeechToTextResponse
 #import actionlib
-from google.cloud import speech_v1p1beta1 as speech
+from google.cloud import speech_v1 as speech
 #from google.cloud.speech import enums 消えたらしい
 #from google.cloud.speech import types
 import pyaudio
