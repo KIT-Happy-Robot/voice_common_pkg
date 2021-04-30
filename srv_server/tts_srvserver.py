@@ -4,7 +4,7 @@
 
 import roslib
 import rospy
-from gcp_texttospeech.srv import TTS, TTSResponse
+from voice_common_pkg.srv import TTS, TTSResponse
 
 from google.cloud import texttospeech
 
@@ -15,9 +15,9 @@ Filename = 'output.wav'
 
 class TTS_server(object):
     def __init__(self):
-        rospy.init_node('gcp_texttospeech')
+        rospy.init_node('common_texttospeech')
         self.srv = rospy.Service('/tts', TTS, self.execute)
-        rospy.loginfo("Ready to gcp_texttospeech stdserver")
+        rospy.loginfo("Ready to tts stdserver")
         rospy.spin()
 
     def execute(self, data):
