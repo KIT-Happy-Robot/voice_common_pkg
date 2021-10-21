@@ -15,7 +15,7 @@ from google.cloud import speech_v1p1beta1 as speech
 #from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
-
+#先入れ先出しで一定の順番で、複数のデータの挿入、取り出しが行えるライブラリ
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
@@ -55,7 +55,7 @@ class MicrophoneStream(object):
         # Signal the generator to terminate so that the client's
         # streaming_recognize method will not block the process termination.
         self._buff.put(None)
-        self._audio_interface.terminate()
+        self._audio_interface.terminate()#ここで破棄している
 
     def _fill_buffer(self, in_data, frame_count, time_info, status_flags):
         """Continuously collect data from the audio stream, into the buffer."""
@@ -83,6 +83,7 @@ class MicrophoneStream(object):
                     break
 
             yield b''.join(data)
+            #yieldは、関数を一時的に実行停止させることが出来る機能を持つ文
 
 class speech_server():
     def __init__(self):
